@@ -37,12 +37,13 @@ func server() error {
 	e.GET("/version", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
 		return build.InfoMap, nil
 	}))
-	e.Any("/dump", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
+	e.Any("/dump/:id", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
 		if len(SLACK_API) == 0 {
 			return nil, errors.New("slack api not specified")
 		}
 
 		payload := new(strings.Builder)
+		payload.WriteString(fmt.Sprintf("DumpId: %s\n", c.Param("id")))
 		payload.WriteString(fmt.Sprintf("Remote: %s\n", c.Request.RemoteAddr))
 		payload.WriteString(fmt.Sprintf("Method: %s\n", c.Request.Method))
 		payload.WriteString(fmt.Sprintf("Uri: %s\n", c.Request.URL.String()))
