@@ -43,13 +43,14 @@ func server() error {
 		}
 
 		payload := new(strings.Builder)
-		payload.WriteString(fmt.Sprintf("method: %s\n", c.Request.Method))
-		payload.WriteString(fmt.Sprintf("uri: %s\n", c.Request.URL.String()))
-		payload.WriteString("headers:\n")
+		payload.WriteString(fmt.Sprintf("Remote: %s\n", c.Request.RemoteAddr))
+		payload.WriteString(fmt.Sprintf("Method: %s\n", c.Request.Method))
+		payload.WriteString(fmt.Sprintf("Uri: %s\n", c.Request.URL.String()))
+		payload.WriteString("Headers:\n")
 		for k, v := range c.Request.Header {
 			payload.WriteString(fmt.Sprintf("  %s: %s\n", k, strings.Join(v, ",")))
 		}
-		payload.WriteString("body:\n")
+		payload.WriteString("Body:\n")
 		body, _ := io.ReadAll(c.Request.Body)
 		payload.WriteString(string(body) + "\n")
 
