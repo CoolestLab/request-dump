@@ -39,7 +39,7 @@ func server() error {
 	}))
 	e.Any("/dump", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
 		if len(SLACK_API) == 0 {
-			return nil, errors.New("no slack api configured")
+			return nil, errors.New("slack api not specified")
 		}
 
 		payload := new(strings.Builder)

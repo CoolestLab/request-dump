@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-image-and-push:
-    runs-on: self-hosted # ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
+          cache: true
           check-latest: true
 
       - name: Set up goproxy
@@ -33,7 +34,7 @@ jobs:
 
       - name: docker push
         run: |
-          docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} ${{ secrets.DOCKER_REGISTRY }}
+          docker login --username=${{ secrets.DOCKER_ALIYUN_USERNAME }} --password=${{ secrets.DOCKER_ALIYUN_PASSWORD }} ${{ secrets.DOCKER_REGISTRY }}
           docker push ${{ secrets.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: slack message
