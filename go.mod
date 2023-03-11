@@ -1,4 +1,4 @@
-module github.com/CoolestLab/serverless-go-template
+module github.com/CoolestLab/request-dump
 
 go 1.20
 

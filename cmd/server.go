@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/CoolestLab/serverless-go-template/build"
+	"github.com/CoolestLab/request-dump/build"
 
 	"github.com/gin-gonic/contrib/cors"
 	"github.com/gin-gonic/gin"
