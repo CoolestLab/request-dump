@@ -37,7 +37,7 @@ func server() error {
 	e.GET("/version", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
 		return build.InfoMap, nil
 	}))
-	e.Any("/dump/:id", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
+	e.Any("/id/:id", errFuncWrapper(func(c *gin.Context) (interface{}, error) {
 		if len(SLACK_API) == 0 {
 			return nil, errors.New("slack api not specified")
 		}
