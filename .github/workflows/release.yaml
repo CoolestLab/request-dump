@@ -34,7 +34,7 @@ jobs:
 
       - name: docker push
         run: |
-          docker login --username=${{ secrets.DOCKER_ALIYUN_USERNAME }} --password=${{ secrets.DOCKER_ALIYUN_PASSWORD }} ${{ secrets.DOCKER_REGISTRY }}
+          docker login --username=${{ secrets.DOCKER_ALIYUN_USERNAME }} --password=${{ secrets.DOCKER_ALIYUN_PASSWORD }} ${{ secrets.DOCKER_ALIYUN_REGISTRY }}
           docker push ${{ secrets.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: slack message
